@@ -61,7 +61,27 @@ public class SungJukV1bServiceImpl implements SungJukV1bService {
     }
 
     public void modifySungJuk() {
-        
+        // 이름입력 -> 대상검색 -> 새로운데이터입력 -> 성적처리
+        System.out.print("수정할 학생이름은? ");
+        String name = sc.next();
+
+        for (int i = 0; i < sjs.length; i++) {
+            if (sjs[i] != null && sjs[i].getName().equals(name)) {
+                System.out.print("국어는? ");
+                int kor = sc.nextInt();
+                System.out.print("영어은? ");
+                int eng = sc.nextInt();
+                System.out.print("수학은? ");
+                int mat = sc.nextInt();
+
+                SungJukVO sj = new SungJukVO(name, kor, eng, mat);
+                computeSungJuk(sj);
+                sjs[i] = sj;   // 기존 성적데이터 위치에
+                               // 새롭게 생성한 객체 대입
+                System.out.println("\n수정완료!!\n");
+                break;
+            }
+        }
     }
 
     public void readOneSungJuk() {
@@ -77,7 +97,7 @@ public class SungJukV1bServiceImpl implements SungJukV1bService {
         }
 
         if (one != null) {
-            System.out.println(one);
+            System.out.printf("\n %s \n\n", one);
         } else {
             System.out.println("\n찾는 데이터가 없습니다!\n");
         }
@@ -86,7 +106,7 @@ public class SungJukV1bServiceImpl implements SungJukV1bService {
 
     // 성적 리스트 조회 (이름,국어,영어,수학)
     public void readSungJuk() {
-        String fmt = " %s %d %d %d\n";
+        String fmt = "\n %s %d %d %d \n\n";
         for (SungJukVO sj : sjs) {
             if (sj != null)  // 배열에 성적데이터가 존재한다면
                 System.out.printf(fmt, sj.getName(),
