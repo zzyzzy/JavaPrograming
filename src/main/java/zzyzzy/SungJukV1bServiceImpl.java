@@ -46,6 +46,18 @@ public class SungJukV1bServiceImpl implements SungJukV1bService {
     }
 
     public void removeSungJuk() {
+        // 이름입력 -> 대상검색 -> 대상제거
+        System.out.print("삭제할 학생이름은? ");
+        String name = sc.next();
+
+        for (int i = 0; i < sjs.length; i++) {
+            if (sjs[i] != null && sjs[i].getName().equals(name)) {
+                sjs[i] = null;  // 삭제할 배열요소에 null 대입
+                System.out.println("\n삭제되었습니다\n");
+                break;
+            }
+        }
+        
     }
 
     public void modifySungJuk() {
@@ -53,7 +65,23 @@ public class SungJukV1bServiceImpl implements SungJukV1bService {
     }
 
     public void readOneSungJuk() {
-        
+        // 이름입력 -> 대상검색 -> 대상출력
+        System.out.print("조회할 학생이름은? ");
+        String name = sc.next();
+
+        SungJukVO one = null;
+        for (SungJukVO sj : sjs) {
+            if (sj != null && sj.getName().equals(name)) {
+                one = sj;  break;
+            }
+        }
+
+        if (one != null) {
+            System.out.println(one);
+        } else {
+            System.out.println("\n찾는 데이터가 없습니다!\n");
+        }
+
     }
 
     // 성적 리스트 조회 (이름,국어,영어,수학)
