@@ -1,4 +1,6 @@
-package zzyzzy;
+package zzyzzy.poject.sungjuk;
+
+import zzyzzy.poject.sungjuk.service.SungJukV1Service;
 
 public class SungJukV1Main {
     // 성적 처리프로그램 v1

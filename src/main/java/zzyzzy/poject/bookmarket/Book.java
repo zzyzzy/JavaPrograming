@@ -1,4 +1,4 @@
-package zzyzzy;
+package zzyzzy.poject.bookmarket;
 
 public class Book {
     private String isbn;

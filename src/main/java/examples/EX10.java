@@ -1,6 +1,6 @@
 package examples;
 
-import zzyzzy.SungJukVO;
+import zzyzzy.poject.sungjuk.model.SungJukVO;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package zzyzzy;
+package zzyzzy.poject.sungjuk.model;
 
 public class SungJukVO {
     private String name;

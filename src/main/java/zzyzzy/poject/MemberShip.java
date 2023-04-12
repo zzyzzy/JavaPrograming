@@ -1,4 +1,4 @@
-package zzyzzy;
+package zzyzzy.poject;
 
 public class MemberShip {
     private int mno;

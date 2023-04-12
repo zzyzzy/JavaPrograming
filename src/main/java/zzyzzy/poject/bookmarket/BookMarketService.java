@@ -1,4 +1,6 @@
-package zzyzzy;
+package zzyzzy.poject.bookmarket;
+
+import zzyzzy.poject.MemberShip;
 
 import java.util.Scanner;
 
