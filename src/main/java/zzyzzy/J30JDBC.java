@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class J30JDBC {
     private static String DRV = "org.mariadb.jdbc.Driver";
-    private static String URL = "jdbc:mariadb://fullstacks.chfcmpaskysu.ap-northeast-2.rds.amazonaws.com:3306/fullstacks";
-    private static String USR = "admin";
-    private static String PWD = "fullstack_2023";
+    private static String URL = "jdbc:mariadb://192.168.86.140:3306/fullstacks";
+    private static String USR = "fullstacks";
+    private static String PWD = "fullstacks_2023";
 
     private static String deleteBookSQL = "delete from newbooks where bookno = ?";
 

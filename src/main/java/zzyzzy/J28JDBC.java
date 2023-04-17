@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class J28JDBC {
     private static String DRV = "org.mariadb.jdbc.Driver";
-    private static String URL = "jdbc:mariadb://fullstacks.chfcmpaskysu.ap-northeast-2.rds.amazonaws.com:3306/fullstacks";
-    private static String USR = "admin";
-    private static String PWD = "fullstack_2023";
+    private static String URL = "jdbc:mariadb://192.168.86.140:3306/fullstacks";
+    private static String USR = "fullstacks";
+    private static String PWD = "fullstacks_2023";
 
     private static String selectBookSQL = "select * from newbooks order by bookno desc";
 
@@ -120,4 +120,5 @@ class Book {
         String fmt = "%d %s %s %d %s";
         return String.format(fmt, bookno, title, writer, price, regdate);
     }
+
 }
