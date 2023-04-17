@@ -52,15 +52,20 @@ public class J33JDBC {
         }
 
         // 사원 상세조회
-        System.out.println("조회할 사원번호는? ");
+        /*System.out.println("조회할 사원번호는? ");
         int empno = sc.nextInt();
 
         EMPVO emp = EMPDAOImpl.selectOneEmp(empno);
-        if (emp != null) System.out.println(emp);
+        if (emp != null) System.out.println(emp);*/
 
         // 사원 수정
 
         // 사원 삭제
+        System.out.println("삭제할 사원번호는? ");
+        int empno = sc.nextInt();
+
+        int cnt = EMPDAOImpl.deleteEmp(empno);
+        if (cnt > 0) System.out.println("사원정보 삭제 성공!!");
 
     }
 }
@@ -200,15 +205,15 @@ interface EMPDAO {
 }
 
 class EMPDAOImpl {
-    private static String insertEmpSQL =
-        " insert into employees values (?,?,?,?,?, ?,?,?,?,?, ?) ";
+    private static String insertEmpSQL = " insert into employees values (?,?,?,?,?, ?,?,?,?,?, ?) ";
 
     private static String selectEmpSQL =
         " select employee_id, first_name, email, job_id, department_id " +
         " from employees order by employee_id ";
 
-    private static String selectOneEmpSQL =
-        " select * from employees where employee_id = ? ";
+    private static String selectOneEmpSQL = " select * from employees where employee_id = ? ";
+
+    private static String deleteEmpSQL = " delete from employees where employee_id = ? ";
 
     public static int insertEmp(EMPVO emp) {
         Connection conn = null;
@@ -322,17 +327,22 @@ class EMPDAOImpl {
     public static int deleteEmp(int empno) {
         Connection conn = null;
         PreparedStatement pstmt = null;
+        int cnt = 0;
 
         try {
+            conn = J34JDBCUtil.makeConn();
+            pstmt = conn.prepareStatement(deleteEmpSQL);
+            pstmt.setInt(1, empno);
 
+            cnt = pstmt.executeUpdate();
         } catch (Exception ex) {
             System.out.println("deleteEmp에서 오류발생!!");
             System.out.println(ex.getMessage());
         } finally {
-
+            J34JDBCUtil.closeConn(null, pstmt, conn);
         }
 
-        return 0;
+        return cnt;
     }
 
 }
