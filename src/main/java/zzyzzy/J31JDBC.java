@@ -7,10 +7,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class J31JDBC {
-    private static String DRV = "org.mariadb.jdbc.Driver";
-    private static String URL = "jdbc:mariadb://192.168.86.140:3306/fullstacks";
-    private static String USR = "fullstacks";
-    private static String PWD = "fullstacks_2023";
 
     private static String updateBookSQL =
         "update newbooks set title = ?, writer = ?, price = ? where bookno = ?";
@@ -30,17 +26,12 @@ public class J31JDBC {
         System.out.print("수정할 가격은? ");
         int price = sc.nextInt();
 
-        try {
-            Class.forName(DRV);
-        } catch (ClassNotFoundException e) {
-            System.out.println("mariadb 용 JDBC 드라이버가 없어요!!");
-        }
-
         Connection conn = null;
         PreparedStatement pstmt = null;
 
         try {
-            conn = DriverManager.getConnection(URL, USR, PWD);
+            conn = J32JDBCUtil.makeConn();
+
             pstmt = conn.prepareStatement(updateBookSQL);
             pstmt.setString(1, bkname);
             pstmt.setString(2, author);
@@ -54,8 +45,7 @@ public class J31JDBC {
         } catch (SQLException e) {
             System.out.println("디비 접속주소나 아이디/비번, SQL문을 확인하세요!!");
         } finally {
-            if (pstmt != null) try { pstmt.close(); } catch (Exception ex) {}
-            if (conn != null) try { conn.close(); } catch (Exception ex) {}
+            J32JDBCUtil.closeConn(null, pstmt, conn);
         }
 
     }
