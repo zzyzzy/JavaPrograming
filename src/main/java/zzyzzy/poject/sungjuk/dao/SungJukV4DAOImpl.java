@@ -129,9 +129,14 @@ public class SungJukV4DAOImpl implements SungJukV4DAO {
     public int deleteSungJuk(int sjno) {
         Connection conn = null;
         PreparedStatement pstmt = null;
+        int cnt = -1;
 
         try {
             conn = MariaDB.makeConn();
+            pstmt = conn.prepareStatement(deleteSQL);
+            pstmt.setInt(1, sjno);
+
+            cnt = pstmt.executeUpdate();
         } catch (Exception ex) {
             System.out.println("selectSungJuk에서 오류발생!!");
             ex.printStackTrace();
@@ -139,6 +144,6 @@ public class SungJukV4DAOImpl implements SungJukV4DAO {
             MariaDB.closeConn(null, pstmt, conn);
         }
 
-        return 0;
+        return cnt;
     }
 }
